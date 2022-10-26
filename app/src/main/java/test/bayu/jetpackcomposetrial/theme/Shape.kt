@@ -1,4 +1,4 @@
-package test.bayu.jetpackcomposetrial.ui.theme
+package test.bayu.jetpackcomposetrial.theme
 
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Shapes

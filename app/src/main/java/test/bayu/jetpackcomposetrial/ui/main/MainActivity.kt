@@ -1,4 +1,4 @@
-package test.bayu.jetpackcomposetrial
+package test.bayu.jetpackcomposetrial.ui.main
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
@@ -12,7 +12,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
-import test.bayu.jetpackcomposetrial.ui.theme.JetpackComposeTrialTheme
+import test.bayu.jetpackcomposetrial.theme.JetpackComposeTrialTheme
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
