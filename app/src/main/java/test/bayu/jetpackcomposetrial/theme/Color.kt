@@ -2,7 +2,7 @@ package test.bayu.jetpackcomposetrial.theme
 
 import androidx.compose.ui.graphics.Color
 
-val Purple200 = Color(0xFFBB86FC)
-val Purple500 = Color(0xFF6200EE)
-val Purple700 = Color(0xFF3700B3)
-val Teal200 = Color(0xFF03DAC5)
+val CornFlower = Color(0xFF546de5)
+val SoftBlue = Color(0xFF778beb)
+val TigerLily = Color(0xFFe15f41)
+val BlueCuracao = Color(0xFF3dc1d3)
