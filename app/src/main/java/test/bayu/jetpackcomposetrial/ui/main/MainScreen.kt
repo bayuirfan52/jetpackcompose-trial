@@ -1,74 +1,36 @@
 package test.bayu.jetpackcomposetrial.ui.main
 
-import android.util.Log
-import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.layout.width
-import androidx.compose.material.Button
-import androidx.compose.material.ButtonDefaults
 import androidx.compose.material.Scaffold
-import androidx.compose.material.Text
-import androidx.compose.material.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
-import coil.compose.AsyncImage
-import test.bayu.jetpackcomposetrial.route.Routes
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
+import androidx.navigation.compose.rememberNavController
+import test.bayu.jetpackcomposetrial.route.bottom_nav.BottomNavigationItems
+import test.bayu.jetpackcomposetrial.route.bottom_nav.BottomNavigationMain
+import test.bayu.jetpackcomposetrial.ui.home.HomeScreen
+import test.bayu.jetpackcomposetrial.ui.profile.ProfileScreen
 
 @Composable
 fun MainScreen(navController: NavHostController) {
+    val innerNavController = rememberNavController()
+
     Scaffold(
-        topBar = {
-            TopAppBar(
-                title = {
-                    Text(
-                        text = "Home",
-                        color = Color.White,
-                        fontSize = 16.sp
-                    )
-                },
-            )
-        },
-        content = { paddingValues ->
-            Box(modifier = Modifier.padding(paddingValues)) {
-                Column(modifier = Modifier.padding(16.dp)) {
-                    Row {
-                        AsyncImage(
-                            model = "https://upload-os-bbs.hoyolab.com/upload/2022/08/06/148947263/8035f28e93ffba6fdecf0a527cc78214_7659442956978110633.jpg?x-oss-process=image/resize,s_600/quality,q_80/auto-orient,0/interlace,1/format,jpg",
-                            contentDescription = "Contact profile picture",
-                            modifier = Modifier.size(84.dp)
-                        )
-                        Spacer(modifier = Modifier.width(12.dp))
-                        Column {
-                            Text(text = "Hello!")
-                            Text(text = "Jetpack Compose Trial")
-                        }
-                    }
-                    Spacer(modifier = Modifier.height(24.dp))
-                    Button(
-                        onClick = {
-                            navController.navigate(Routes.Settings.route)
-                            Log.d("TEST", "CLICKED")
-                        },
-                        colors = ButtonDefaults.buttonColors(
-                            backgroundColor = Color.Red,
-                            contentColor = Color.White,
-                        ),
-                        modifier = Modifier.fillMaxWidth()
-                    ) {
-                        Text(text = "Click to Open Settings")
-                    }
-                }
+        bottomBar = { BottomNavigationMain(navController = innerNavController) }
+    ) { innerPadding ->
+        NavHost(
+            navController = innerNavController,
+            modifier = Modifier.padding(innerPadding),
+            startDestination = BottomNavigationItems.Home.route
+        ) {
+            composable(BottomNavigationItems.Home.route) {
+                HomeScreen(navController)
             }
-        },
-    )
+            composable(BottomNavigationItems.Profile.route) {
+                ProfileScreen(navController)
+            }
+        }
+    }
 }
